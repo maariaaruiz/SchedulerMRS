@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Scheduler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Scheduler
+namespace SchedulerNegocio
 {
     static class Program
     {
@@ -16,7 +17,7 @@ namespace Scheduler
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new CalculatorNextDate());
         }
     }
 }
