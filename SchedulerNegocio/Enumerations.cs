@@ -1,5 +1,5 @@
 ﻿namespace SchedulerNegocio
-{   
+{
     public enum Types
     {
         Once,
@@ -8,6 +8,19 @@
 
     public enum Frecuencys
     {
-        Daily
+        Daily,
+        Weekly
+    }
+
+    public enum DailyFrencuencys
+    {
+        OnceTime,
+        EveryTime
+    }
+    public enum TimeTypes
+    {
+        Hours,
+        Minutes,
+        Seconds
     }
 }
