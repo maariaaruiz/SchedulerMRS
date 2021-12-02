@@ -9,7 +9,8 @@
     public enum Frecuencys
     {
         Daily,
-        Weekly
+        Weekly,
+        Monthly
     }
 
     public enum DailyFrencuencys
