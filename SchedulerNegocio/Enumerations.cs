@@ -24,4 +24,25 @@
         Minutes,
         Seconds
     }
+    public enum WeeksInMonth
+    {
+        First,
+        Second,
+        Third,
+        Fourth,
+        Last
+    }
+    public enum Days_Of_Week_Monthly
+    {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
+        day,
+        weekend,
+        weekendday
+    }
 }

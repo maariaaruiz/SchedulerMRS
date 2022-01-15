@@ -24,6 +24,10 @@ namespace SchedulerNegocio
         public TimeSpan End_time { get; set; }
         public int Frecuency_weeks { get; set; }
         public  DayOfWeek[] Days_active_week { get; set; }
+        public int Frecuency_months { get; set; }
+        public WeeksInMonth? Actual_week { get; set; }
+        public Days_Of_Week_Monthly? Active_days_monthly { get; set; }
+
         public DateTime? Last_execution { get; set; }
 
     }
