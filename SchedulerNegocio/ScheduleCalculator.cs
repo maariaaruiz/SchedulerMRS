@@ -9,21 +9,26 @@ namespace SchedulerNegocio
     {
         private const int DAYS_FOR_WEEK = 7;
         private const int DAY = 1;
+        private LanguageConverter language;
 
         public DateTime? GetResult(ScheduleConfiguration configuration)
         {
+            Language languageApplication = configuration != null
+                ? configuration.Language_Application : Language.UK;
+            language = new(languageApplication);
+
             this.ValidateConfiguration(configuration);
 
             if (configuration.Active == false)
             {
-                throw new InvalidOperationException("Configuration must be active");
+                throw new InvalidOperationException(language.GetTraduction("Configuration must be active"));
             }
 
             DateTime? nextDate = configuration.Ocurrs_type switch
             {
                 Types.Once => this.GetNextDateOnce(configuration),
                 Types.Recurring => this.GetNextDateRecurring(configuration),
-                _ => throw new InvalidOperationException("The type is not recognized"),
+                _ => throw new InvalidOperationException(language.GetTraduction("The type is not recognized")),
             };
             if (nextDate != null)
             {
@@ -37,7 +42,7 @@ namespace SchedulerNegocio
             DateTime? nextDate = configuration.Configuration_date;
             if (nextDate.HasValue == false)
             {
-                throw new InvalidOperationException("Configuration date can not be empty");
+                throw new InvalidOperationException(language.GetTraduction("Configuration date can not be empty"));
             }
 
             this.ValidateDateLimits(configuration);
@@ -46,7 +51,7 @@ namespace SchedulerNegocio
               || (configuration.End_date.HasValue
                   && configuration.End_date.Value < nextDate.Value.Date))
             {
-                throw new InvalidOperationException("Next execution time exceeds date limits");
+                throw new InvalidOperationException(language.GetTraduction("Next execution time exceeds date limits"));
             }
             return nextDate;
         }
@@ -59,7 +64,7 @@ namespace SchedulerNegocio
 
             if (nextDate == null)
             {
-                throw new InvalidOperationException("Current date can not be empty");
+                throw new InvalidOperationException(language.GetTraduction("Current date can not be empty"));
             }
 
             this.ValidateDateLimits(configuration);
@@ -73,7 +78,7 @@ namespace SchedulerNegocio
                 configuration.Frecuency != Frecuencys.Weekly
                 && configuration.Frecuency != Frecuencys.Monthly)
             {
-                throw new InvalidOperationException("The frequency is not set correctly");
+                throw new InvalidOperationException(language.GetTraduction("The frequency is not set correctly"));
             }
             if (configuration.Frecuency == Frecuencys.Weekly)
             {
@@ -124,7 +129,8 @@ namespace SchedulerNegocio
                 theTime = configuration.Time_once_frecuency;
                 if (theTime == null)
                 {
-                    throw new InvalidOperationException("Must be indicate the daily time");
+                    throw new InvalidOperationException(
+                        language.GetTraduction("Must be indicate the daily time"));
                 }
                 return theTime.Value;
             }
@@ -134,7 +140,8 @@ namespace SchedulerNegocio
             }
             else
             {
-                throw new InvalidOperationException("Must to select a daily frequency type 'Once' or 'Every'");
+                throw new InvalidOperationException(
+                    language.GetTraduction("Must to select a daily frequency type 'Once' or 'Every'"));
             }
         }
 
@@ -165,19 +172,19 @@ namespace SchedulerNegocio
         {
             if (configuration.Time_frecuency <= 0)
             {
-                throw new InvalidOperationException("The hourly frequency must be greater than 0");
+                throw new InvalidOperationException(language.GetTraduction("The hourly frequency must be greater than 0"));
             }
             if (configuration.Time_type != TimeTypes.Hours &&
                 configuration.Time_type != TimeTypes.Minutes &&
                 configuration.Time_type != TimeTypes.Seconds)
             {
-                throw new InvalidOperationException("Must indicate the type of frecuency Hours, Minutes o Seconds correctly");
+                throw new InvalidOperationException(language.GetTraduction("Must indicate the type of frecuency Hours, Minutes o Seconds correctly"));
             }
             if (configuration.Star_time >= configuration.End_time
                 || configuration.Star_time == null
                 || configuration.End_time == null)
             {
-                throw new InvalidOperationException("The Horary Range is not set correctly");
+                throw new InvalidOperationException(language.GetTraduction("The Horary Range is not set correctly"));
             }
         }
 
@@ -246,12 +253,12 @@ namespace SchedulerNegocio
         {
             if (configuration.Frecuency_weeks <= 0)
             {
-                throw new InvalidOperationException("The weekly frequency must be greater than 0");
+                throw new InvalidOperationException(language.GetTraduction("The weekly frequency must be greater than 0"));
             }
             if (configuration.Days_active_week == null
                   || configuration.Days_active_week.Length == 0)
             {
-                throw new InvalidOperationException("You must select at least one day of the week");
+                throw new InvalidOperationException(language.GetTraduction("You must select at least one day of the week"));
             }
         }
 
@@ -284,7 +291,8 @@ namespace SchedulerNegocio
                 WeeksInMonth.Third => 14,
                 WeeksInMonth.Fourth => 21,
                 WeeksInMonth.Last => 35,
-                _ => throw new InvalidOperationException("You must select First, Second, Third or Last"),
+                _ => throw new InvalidOperationException(
+                    language.GetTraduction("You must select First, Second, Third or Last")),
             };
         }
 
@@ -325,7 +333,7 @@ namespace SchedulerNegocio
                     days = new DayOfWeek?[1];
                     days[0] = null;
                     break;
-                case Days_Of_Week_Monthly.weekend:
+                case Days_Of_Week_Monthly.weekday:
                     days = new DayOfWeek?[5];
                     days[0] = DayOfWeek.Monday;
                     days[1] = DayOfWeek.Tuesday;
@@ -339,7 +347,8 @@ namespace SchedulerNegocio
                     days[1] = DayOfWeek.Sunday;
                     break;
                 default:
-                    throw new InvalidOperationException("You must select at least one day of the week");
+                    throw new InvalidOperationException(
+                        language.GetTraduction("You must select at least one day of the week"));
             }
             return days;
         }
@@ -501,8 +510,8 @@ namespace SchedulerNegocio
             nextDateMonth = this.GetFirstWeekendDayOfNextMonth(configuration, nextDateMonth);
             if (nextDateMonth.DayOfWeek == DayOfWeek.Sunday)
             {
-                DateTime date = nextDateMonth.AddDays(days - 1); 
-                return date.Month <= nextDate.Month ? nextDateMonth : date;              
+                DateTime date = nextDateMonth.AddDays(days - 1);
+                return date.Month <= nextDate.Month ? nextDateMonth : date;
             }
             return nextDateMonth.AddDays(days);
         }
@@ -522,12 +531,12 @@ namespace SchedulerNegocio
         {
             DateTime lastSaturday = this.GetLastEspecificDateOfMonth(nextDate, DayOfWeek.Saturday);
             DateTime lastDateMonth = this.GetLastDateOfMonth(nextDate);
-           
+
             if (configuration.Last_execution == null)
             {
                 return (configuration.Current_date.Value.Date <= lastSaturday.Date)
-                    ? lastSaturday 
-                    : lastSaturday.AddDays(1);              
+                    ? lastSaturday
+                    : lastSaturday.AddDays(1);
             }
             if (configuration.Last_execution.Value.DayOfWeek == DayOfWeek.Saturday
                  && configuration.Last_execution.Value.Date != lastDateMonth.Date)
@@ -672,15 +681,16 @@ namespace SchedulerNegocio
             }
             string DescriptionFrecuency = this.GetTextFrecuency(configuration);
             string DescriptionOcurrs = configuration.Ocurrs_type == Types.Once
-                ? "Ocurrs once. " : DescriptionFrecuency;
+                ? language.GetTraduction("Ocurrs once. ") : DescriptionFrecuency;
 
             string Time = this.GetTextHourly(configuration);
             string DescriptionTime = this.GetTextTime(configuration, Time);
 
             return DescriptionOcurrs +
-                   "Schedule will be used" +
+                   language.GetTraduction("Schedule will be used on") +
+                   language.GetDateTimeFormatedLanguage(configuration.Last_execution.Value) +
                   DescriptionTime +
-                   " starting on " + configuration.Start_date.Value.ToShortDateString();
+                  language.GetTraduction(" starting on ") + language.GetDateFormatedLanguage(configuration.Start_date.Value);
         }
 
         private string GetTextFrecuency(ScheduleConfiguration configuration)
@@ -689,12 +699,15 @@ namespace SchedulerNegocio
             {
                 return configuration.Frecuency switch
                 {
-                    Frecuencys.Daily => "Ocurrs every day. ",
-                    Frecuencys.Weekly => "Ocurrs every " + configuration.Frecuency_weeks +
-                                         " weeks on " + string.Join(" - ", configuration.Days_active_week) + ". ",
-                    Frecuencys.Monthly => "Ocurrs the " + configuration.Actual_week.ToString() + " " +
-                                          configuration.Active_days_monthly + " of every " +
-                                          configuration.Frecuency_months + " months. ",
+                    Frecuencys.Daily => language.GetTraduction("Ocurrs every day. "),
+                    Frecuencys.Weekly => language.GetTraduction("Ocurrs every ") + configuration.Frecuency_weeks +
+                                            language.GetTraduction(" weeks on ") + string.Join(" - ",
+                                            language.GetTraductionList(configuration.Days_active_week.ToList())) + ". ",
+                    Frecuencys.Monthly => language.GetTraduction("Ocurrs the ") +
+                                            language.GetTraduction(configuration.Actual_week.ToString()) + " " +
+                                            language.GetTraduction(configuration.Active_days_monthly.ToString()) +
+                                            language.GetTraduction(" of every ") +
+                                            configuration.Frecuency_months + language.GetTraduction(" months. "),
                     _ => string.Empty,
                 };
             }
@@ -708,15 +721,15 @@ namespace SchedulerNegocio
         {
             if (configuration.Time_type == TimeTypes.Hours)
             {
-                return " hours ";
+                return language.GetTraduction(" hours ");
             }
             if (configuration.Time_type == TimeTypes.Minutes)
             {
-                return " minutes ";
+                return language.GetTraduction(" minutes ");
             }
             if (configuration.Time_type == TimeTypes.Seconds)
             {
-                return " seconds ";
+                return language.GetTraduction(" seconds ");
             }
             return string.Empty;
         }
@@ -725,9 +738,9 @@ namespace SchedulerNegocio
         {
             return (configuration.Ocurrs_type == Types.Once
                     || configuration.Daily_frecuency == DailyFrencuencys.OnceTime)
-                ? " at " + configuration.Last_execution.Value.ToLongTimeString()
-                : " every " + configuration.Time_frecuency + textFrecuencyTime + "between "
-                + configuration.Star_time + " and " + configuration.End_time;
+                ? "" : language.GetTraduction(" every ") + configuration.Time_frecuency + textFrecuencyTime +
+                language.GetTraduction("between ")
+                + configuration.Star_time + language.GetTraduction(" and ") + configuration.End_time;
         }
 
         public void ValidateConfiguration(ScheduleConfiguration configuration)
@@ -741,12 +754,12 @@ namespace SchedulerNegocio
         {
             if (configuration.Start_date.HasValue == false)
             {
-                throw new InvalidOperationException("Start date can not be empty");
+                throw new InvalidOperationException(language.GetTraduction("Start date can not be empty"));
             }
             if (configuration.End_date.HasValue &&
                 (configuration.Start_date >= configuration.End_date))
             {
-                throw new InvalidOperationException("End date cant not be equal start date");
+                throw new InvalidOperationException(language.GetTraduction("End date cant not be equal start date"));
             }
         }
 

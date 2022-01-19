@@ -58,7 +58,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Once_01_10_2021_Returns_01_10_2021()
         {
             string expectedDescription = "Ocurrs once. Schedule will be" +
-                " used at 15:30:00 starting on 01/10/2021";
+                " used on 01/10/2021 15:30:00 starting on 01/10/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -241,7 +241,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Daily_Recurring_OnceTime_01_10_2021_Return_NextTime_01_10_2021()
         {
             String ExpectedDescription = "Ocurrs every day. Schedule will be used" +
-               " at 17:30:20 starting on 01/10/2021";
+               " on 01/10/2021 17:30:20 starting on 01/10/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -265,7 +265,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Daily_Recurring_OnceTime_CalculateSerie_Not_End_date()
         {
             String ExpectedDescription = "Ocurrs every day. Schedule will be used" +
-                " at 17:00:00 starting on 01/10/2021";
+                " on 05/10/2021 17:00:00 starting on 01/10/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -293,7 +293,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Daily_Recurring_OnceTime_CalculateSerie_With_End_Time()
         {
             String ExpectedDescription = "Ocurrs every day. Schedule will be used" +
-                " at 17:00:00 starting on 01/10/2021";
+                " on 03/10/2021 17:00:00 starting on 01/10/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -326,7 +326,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Daily_Recurring_EveryTime_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every day. Schedule will be" +
-                " used every 2 hours between 00:00:00 and 04:00:00 starting on 01/10/2021";
+                " used on 01/10/2021 00:00:00 every 2 hours between 00:00:00 and 04:00:00 starting on 01/10/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -354,7 +354,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Daily_Recurring_EveryTime_Hours_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every day. Schedule will be" +
-                " used every 1 hours between 00:00:00 and 04:00:00 starting on 01/10/2021";
+                " used on 01/10/2021 02:00:00 every 1 hours between 00:00:00 and 04:00:00 starting on 01/10/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -386,7 +386,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Daily_Recurring_EveryTime_Minutes_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every day. Schedule will be" +
-                " used every 40 minutes between 12:10:00 and 14:00:00 starting on 01/10/2021";
+                " used on 02/10/2021 12:10:00 every 40 minutes between 12:10:00 and 14:00:00 starting on 01/10/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -403,9 +403,9 @@ namespace Scheduler.UnitTests
             };
             ScheduleCalculator Calculator = new();
 
-            var result = Calculator.CalculateSerie(Config, 5);
+            var result = Calculator.CalculateSerie(Config, 4);
             string actualDescription = Calculator.GetDescriptionExecution(Config);
-            Assert.AreEqual(result.Count, 5);
+            Assert.AreEqual(result.Count, 4);
             Assert.AreEqual(new DateTime(2021, 10, 01, 12, 10, 00), result[0]);
             Assert.AreEqual(new DateTime(2021, 10, 01, 12, 50, 00), result[1]);
             Assert.AreEqual(new DateTime(2021, 10, 01, 13, 30, 00), result[2]);
@@ -417,7 +417,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Daily_Recurring_EveryTime_Seconds_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every day. Schedule will be" +
-                " used every 20 seconds between 12:00:00 and 12:00:59 starting on 01/10/2021";
+                " used on 02/10/2021 12:00:40 every 20 seconds between 12:00:00 and 12:00:59 starting on 01/10/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -451,7 +451,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Daily_Recurring_EveryTime_CalculateSerie_With_EndDate_In_Same_Day()
         {
             String ExpectedDescription = "Ocurrs every day. Schedule will be" +
-                " used every 1 hours between 00:00:00 and 01:00:00 starting on 01/10/2021";
+                " used on 01/10/2021 01:00:00 every 1 hours between 00:00:00 and 01:00:00 starting on 01/10/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -483,7 +483,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Daily_Recurring_EveryTime_CalculateSerie_With_EndDate_In_Other_Day()
         {
             String ExpectedDescription = "Ocurrs every day. Schedule will be" +
-                " used every 1 hours between 00:00:00 and 01:00:00 starting on 01/10/2021";
+                " used on 02/10/2021 01:00:00 every 1 hours between 00:00:00 and 01:00:00 starting on 01/10/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -751,7 +751,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Monday_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Monday. Schedule will be" +
-                " used at 15:00:00 starting on 01/01/2021";
+                " used on 11/01/2021 15:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -778,7 +778,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Tuesday_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Tuesday. Schedule will be" +
-                " used at 15:00:00 starting on 01/01/2021";
+                " used on 12/01/2021 15:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -805,7 +805,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Wednesday_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Wednesday. Schedule will be" +
-                " used at 15:00:00 starting on 01/01/2021";
+                " used on 13/01/2021 15:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -831,7 +831,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Thursdays_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Thursday. Schedule will be" +
-                " used at 15:00:00 starting on 01/01/2021";
+                " used on 14/01/2021 15:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -858,7 +858,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Fridays_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Friday. Schedule will be" +
-                " used at 15:00:00 starting on 01/01/2021";
+                " used on 15/01/2021 15:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -885,7 +885,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Saturdays_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Saturday. Schedule will be" +
-                " used at 15:00:00 starting on 01/01/2021";
+                " used on 02/01/2021 15:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -912,7 +912,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Thursdays_Start_Saturday_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Thursday. Schedule will be" +
-                " used at 15:00:00 starting on 01/01/2021";
+                " used on 14/01/2021 15:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -938,7 +938,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Sundays_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Saturday. Schedule will be" +
-                " used at 15:00:00 starting on 01/01/2021";
+                " used on 02/01/2021 15:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -965,7 +965,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Sundays_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Sunday. Schedule will be" +
-                " used at 15:00:00 starting on 01/01/2021";
+                " used on 17/01/2021 15:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -994,7 +994,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_One_Week_Sundays_Mondays_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 1 weeks on Monday - Sunday. Schedule will be" +
-                  " used at 1:00:00 starting on 01/01/2021";
+                  " used on 04/01/2021 01:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -1022,7 +1022,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_TwoWeeks_Mondays_Sundays_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Monday - Sunday. Schedule will be" +
-                  " used at 1:00:00 starting on 01/01/2021";
+                  " used on 17/01/2021 01:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -1051,7 +1051,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Tuesday - Saturday - Sunday. Schedule will be" +
-                 " used at 1:00:00 starting on 01/01/2021";
+                 " used on 02/01/2021 01:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -1077,7 +1077,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_TwoWeeks_Fridays_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Friday. Schedule will be" +
-                 " used at 1:00:00 starting on 01/01/2021";
+                 " used on 15/01/2021 01:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -1103,7 +1103,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Mondays_Return_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Monday. Schedule will be" +
-                  " used at 1:00:00 starting on 01/01/2021";
+                  " used on 22/02/2021 01:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -1132,7 +1132,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_OnceTime_Two_Weeks_Wednesdays_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Wednesday. Schedule will be" +
-                " used at 15:00:00 starting on 01/01/2021";
+                " used on 27/01/2021 15:00:00 starting on 01/01/2021";
             ScheduleConfiguration Config = new()
             {
                 Active = true,
@@ -1148,10 +1148,10 @@ namespace Scheduler.UnitTests
             };
             ScheduleCalculator Calculator = new();
 
-            var result = Calculator.CalculateSerie(Config, 3);
+            var result = Calculator.CalculateSerie(Config, 2);
             string actualDescription = Calculator.GetDescriptionExecution(Config);
 
-            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(2, result.Count);
             Assert.AreEqual(new DateTime(2021, 01, 13, 15, 00, 00), result[0]);
             Assert.AreEqual(new DateTime(2021, 01, 27, 15, 00, 00), result[1]);
             Assert.AreEqual(ExpectedDescription, actualDescription);
@@ -1189,7 +1189,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Hours_Fridays_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Friday. Schedule will be" +
-                 " used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+                 " used on 01/01/2021 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1220,7 +1220,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Minutes_Wednesdays_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Wednesday. Schedule will be" +
-                 " used every 20 minutes between 02:00:00 and 04:00:00 starting on 01/01/2021";
+                 " used on 13/01/2021 02:00:00 every 20 minutes between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1252,7 +1252,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Seconds_Fridays_Return_NextDate()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Thursday. Schedule will be" +
-                 " used every 20 seconds between 02:00:00 and 04:00:00 starting on 01/01/2021";
+                 " used on 14/01/2021 02:00:00 every 20 seconds between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1283,7 +1283,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Hours_Mondays_Return_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Monday. Schedule will be" +
-                 " used every 2 hours between 02:00:00 and 03:00:00 starting on 01/01/2021";
+                 " used on 08/11/2021 02:00:00 every 2 hours between 02:00:00 and 03:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1316,7 +1316,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Hours_Thursdays_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Thursday. Schedule will be" +
-                 " used every 2 hours between 02:00:00 and 03:00:00 starting on 01/01/2021";
+                 " used on 11/11/2021 02:00:00 every 2 hours between 02:00:00 and 03:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1349,7 +1349,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Hours_Fridays_Return_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Friday. Schedule will be" +
-                 " used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+                 " used on 15/01/2021 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1382,7 +1382,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Minutes_Fridays_Return_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Friday. Schedule will be" +
-                 " used every 20 minutes between 02:00:00 and 03:00:00 starting on 01/01/2021";
+                 " used on 15/01/2021 02:00:00 every 20 minutes between 02:00:00 and 03:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1418,7 +1418,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Seconds_Fridays_Return_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Friday. Schedule will be" +
-                 " used every 20 seconds between 02:00:00 and 02:00:20 starting on 01/01/2021";
+                 " used on 29/01/2021 02:00:00 every 20 seconds between 02:00:00 and 02:00:20 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1453,7 +1453,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Hours_Saturdays_With_EndDate_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 1 weeks on Saturday. Schedule will be" +
-                " used every 1 hours between 00:00:00 and 01:00:00 starting on 01/10/2021";
+                " used on 02/10/2021 01:00:00 every 1 hours between 00:00:00 and 01:00:00 starting on 01/10/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1487,7 +1487,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_StartTime_Before_CurrentDate()
         {
             String ExpectedDescription = "Ocurrs every 1 weeks on Saturday. Schedule will be" +
-                " used every 1 hours between 00:00:00 and 01:00:00 starting on 29/09/2021";
+                " used on 02/10/2021 01:00:00 every 1 hours between 00:00:00 and 01:00:00 starting on 29/09/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1521,7 +1521,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Hours_Tuesdays_With_End_Date_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 1 weeks on Tuesday. Schedule will be" +
-                " used every 1 hours between 00:00:00 and 01:00:00 starting on 01/10/2021";
+                " used on 19/10/2021 01:00:00 every 1 hours between 00:00:00 and 01:00:00 starting on 01/10/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1559,7 +1559,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Weekly_EveryTime_Hours_Tuesdays_Wednesdays_Sundays_With_End_Date_CalculateSerie()
         {
             String ExpectedDescription = "Ocurrs every 3 weeks on Monday - Tuesday - Wednesday - Sunday. Schedule will be" +
-                " used every 1 hours between 00:00:00 and 01:00:00 starting on 01/10/2021";
+                " used on 19/10/2021 00:00:00 every 1 hours between 00:00:00 and 01:00:00 starting on 01/10/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1598,7 +1598,7 @@ namespace Scheduler.UnitTests
         {
             String ExpectedDescription = "Ocurrs every 2 weeks on Monday - Tuesday - Wednesday " +
                 "- Thursday - Friday - Saturday - Sunday. Schedule will be" +
-                " used every 1 hours between 08:00:00 and 09:00:00 starting on 01/10/2021";
+                " used on 25/10/2021 08:00:00 every 1 hours between 08:00:00 and 09:00:00 starting on 01/10/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1655,7 +1655,7 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Exception_When_ActiveDays_Null()
         {
-            String MessageException = "You must select at least one day of the week";       
+            String MessageException = "You must select at least one day of the week";
 
             ScheduleConfiguration Config = new()
             {
@@ -1665,7 +1665,7 @@ namespace Scheduler.UnitTests
                 Frecuency = Frecuencys.Monthly,
                 Start_date = new DateTime(2021, 01, 1, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.OnceTime,
-                Time_once_frecuency = new TimeSpan(01, 00, 00),             
+                Time_once_frecuency = new TimeSpan(01, 00, 00),
                 Actual_week = WeeksInMonth.First,
                 Frecuency_months = 1
             };
@@ -1691,7 +1691,7 @@ namespace Scheduler.UnitTests
                 Start_date = new DateTime(2021, 01, 1, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.OnceTime,
                 Time_once_frecuency = new TimeSpan(01, 00, 00),
-                Active_days_monthly = Days_Of_Week_Monthly.Monday,              
+                Active_days_monthly = Days_Of_Week_Monthly.Monday,
                 Frecuency_months = 1
             };
             ScheduleCalculator Calculator = new();
@@ -1711,7 +1711,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Monday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the First Monday of every 1 months." +
-                " Schedule will be used at 1:00:00 starting on 01/01/2021";
+                " Schedule will be used on 03/05/2021 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1743,7 +1743,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Start_FirstMonday_Return_First_Monday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the First Monday of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2021";
+               " Schedule will be used on 01/11/2021 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -1764,14 +1764,14 @@ namespace Scheduler.UnitTests
             string actualDescription = Calculator.GetDescriptionExecution(Config);
 
             Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(new DateTime(2021, 11, 01, 01, 00, 00), result[0]); 
+            Assert.AreEqual(new DateTime(2021, 11, 01, 01, 00, 00), result[0]);
             Assert.AreEqual(ExpectedDescription, actualDescription);
         }
         [TestMethod]
         public void Scheduler_Monthly_Return_First_Tuesday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the First Tuesday of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2022";
+               " Schedule will be used on 01/02/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -1800,7 +1800,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Wednesda_OnceTimey()
         {
             string ExpectedDescription = "Ocurrs the First Wednesday of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2022";
+               " Schedule will be used on 01/06/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -1832,7 +1832,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Thursday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the First Thursday of every 1 months." +
-              " Schedule will be used at 1:00:00 starting on 01/01/2022";
+              " Schedule will be used on 05/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -1864,7 +1864,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Friday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the First Friday of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2022";
+               " Schedule will be used on 06/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -1896,7 +1896,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthky_Return_First_Saturday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the First Saturday of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2022";
+               " Schedule will be used on 04/06/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -1928,7 +1928,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Sunday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the First Sunday of every 1 months." +
-              " Schedule will be used at 1:00:00 starting on 01/01/2022";
+              " Schedule will be used on 05/06/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -1961,7 +1961,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_LastMonday_OnceTime_Current_Start_In_Same_Month()
         {
             string ExpectedDescription = "Ocurrs the Last Monday of every 1 months." +
-              " Schedule will be used at 1:00:00 starting on 01/01/2022";
+              " Schedule will be used on 28/02/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -1978,10 +1978,10 @@ namespace Scheduler.UnitTests
             };
             ScheduleCalculator Calculator = new();
 
-            var result = Calculator.CalculateSerie(Config, 4);
+            var result = Calculator.CalculateSerie(Config, 2);
             string actualDescription = Calculator.GetDescriptionExecution(Config);
 
-            Assert.AreEqual(4, result.Count);
+            Assert.AreEqual(2, result.Count);
             Assert.AreEqual(new DateTime(2022, 01, 31, 01, 00, 00), result[0]);
             Assert.AreEqual(new DateTime(2022, 02, 28, 01, 00, 00), result[1]);
             Assert.AreEqual(ExpectedDescription, actualDescription);
@@ -1991,7 +1991,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_LastMonday_OnceTime_Current_Date_Start_Final_Of_Month()
         {
             string ExpectedDescription = "Ocurrs the Last Monday of every 1 months." +
-             " Schedule will be used at 1:00:00 starting on 01/01/2022";
+             " Schedule will be used on 30/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2023,7 +2023,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Monday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Second Monday of every 1 months." +
-             " Schedule will be used at 1:00:00 starting on 01/01/2022";
+             " Schedule will be used on 09/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2056,7 +2056,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Tuesday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Second Tuesday of every 1 months." +
-            " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            " Schedule will be used on 10/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2088,7 +2088,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Wednesday()
         {
             string ExpectedDescription = "Ocurrs the Second Wednesday of every 1 months." +
-          " Schedule will be used at 1:00:00 starting on 01/01/2022";
+          " Schedule will be used on 11/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2120,7 +2120,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Thursday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Second Thursday of every 1 months." +
-          " Schedule will be used at 1:00:00 starting on 01/01/2022";
+          " Schedule will be used on 12/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2152,7 +2152,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Friday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Second Friday of every 1 months." +
-         " Schedule will be used at 1:00:00 starting on 01/01/2022";
+         " Schedule will be used on 13/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2185,7 +2185,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Saturdar_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Second Saturday of every 1 months." +
-          " Schedule will be used at 1:00:00 starting on 01/01/2022";
+          " Schedule will be used on 14/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2217,7 +2217,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Sunday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Second Sunday of every 1 months." +
-         " Schedule will be used at 1:00:00 starting on 01/01/2022";
+         " Schedule will be used on 08/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2249,7 +2249,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Monday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Third Monday of every 1 months." +
-         " Schedule will be used at 1:00:00 starting on 01/01/2022";
+         " Schedule will be used on 16/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2281,7 +2281,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Tuesday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Third Tuesday of every 1 months." +
-         " Schedule will be used at 1:00:00 starting on 01/01/2022";
+         " Schedule will be used on 17/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2314,7 +2314,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Wednesday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Third Wednesday of every 1 months." +
-        " Schedule will be used at 1:00:00 starting on 01/01/2022";
+        " Schedule will be used on 18/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2346,7 +2346,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Thursday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Third Thursday of every 1 months." +
-         " Schedule will be used at 1:00:00 starting on 01/01/2022";
+         " Schedule will be used on 19/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2378,7 +2378,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Friday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Third Friday of every 1 months." +
-         " Schedule will be used at 1:00:00 starting on 01/01/2022";
+         " Schedule will be used on 20/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2410,7 +2410,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Saturday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Third Saturday of every 1 months." +
-        " Schedule will be used at 1:00:00 starting on 01/01/2022";
+        " Schedule will be used on 21/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2443,7 +2443,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Sunday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Third Sunday of every 1 months." +
-        " Schedule will be used at 1:00:00 starting on 01/01/2022";
+        " Schedule will be used on 15/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2476,7 +2476,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Monday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Monday of every 1 months." +
-        " Schedule will be used at 1:00:00 starting on 01/01/2022";
+        " Schedule will be used on 23/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2509,7 +2509,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Tuesday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Tuesday of every 1 months." +
-       " Schedule will be used at 1:00:00 starting on 01/01/2022";
+       " Schedule will be used on 24/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2542,7 +2542,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Wednesday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Wednesday of every 1 months." +
-       " Schedule will be used at 1:00:00 starting on 01/01/2022";
+       " Schedule will be used on 25/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2574,7 +2574,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Thursday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Thursday of every 1 months." +
-       " Schedule will be used at 1:00:00 starting on 01/01/2022";
+       " Schedule will be used on 26/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2606,7 +2606,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Friday_Once_Time()
         {
             string ExpectedDescription = "Ocurrs the Fourth Friday of every 1 months." +
-       " Schedule will be used at 1:00:00 starting on 01/01/2022";
+       " Schedule will be used on 27/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2639,7 +2639,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Saturday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Saturday of every 1 months." +
-        " Schedule will be used at 1:00:00 starting on 01/01/2022";
+        " Schedule will be used on 28/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2671,7 +2671,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Sunday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Sunday of every 1 months." +
-       " Schedule will be used at 1:00:00 starting on 01/01/2022";
+       " Schedule will be used on 22/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2704,7 +2704,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Last_Monday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Last Monday of every 1 months." +
-            " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            " Schedule will be used on 30/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2736,7 +2736,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Tuesday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Last Tuesday of every 1 months." +
-             " Schedule will be used at 1:00:00 starting on 01/01/2022";
+             " Schedule will be used on 31/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2769,7 +2769,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Wednesday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Last Wednesday of every 1 months." +
-           " Schedule will be used at 1:00:00 starting on 01/01/2022";
+           " Schedule will be used on 25/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2801,7 +2801,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Thursday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Last Thursday of every 1 months." +
-           " Schedule will be used at 1:00:00 starting on 01/01/2022";
+           " Schedule will be used on 26/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2834,7 +2834,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Friday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Last Friday of every 1 months." +
-           " Schedule will be used at 1:00:00 starting on 01/01/2022";
+           " Schedule will be used on 27/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2868,7 +2868,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Saturday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Last Saturday of every 1 months." +
-           " Schedule will be used at 1:00:00 starting on 01/01/2022";
+           " Schedule will be used on 28/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2901,7 +2901,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Sunday_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Last Sunday of every 1 months." +
-           " Schedule will be used at 1:00:00 starting on 01/01/2022";
+           " Schedule will be used on 29/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -2938,7 +2938,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Monday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First Monday of every 1 months." +
-              " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+              " Schedule will be used on 01/03/2021 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -2975,7 +2975,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Monday_With_End_date_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First Monday of every 1 months." +
-              " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+              " Schedule will be used on 04/01/2021 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -2984,7 +2984,7 @@ namespace Scheduler.UnitTests
                 Current_date = new DateTime(2021, 01, 1, 00, 00, 00),
                 Frecuency = Frecuencys.Monthly,
                 Start_date = new DateTime(2021, 01, 1, 00, 00, 00),
-                End_date = new DateTime(2021,01,15,00,00,00),
+                End_date = new DateTime(2021, 01, 15, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.EveryTime,
                 Star_time = new TimeSpan(02, 00, 00),
                 End_time = new TimeSpan(04, 00, 00),
@@ -3008,7 +3008,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Tuesday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First Tuesday of every 1 months." +
-             " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+             " Schedule will be used on 05/04/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3043,7 +3043,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Wednesday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First Wednesday of every 1 months." +
-           " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+           " Schedule will be used on 01/06/2022 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3083,7 +3083,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Thursday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First Thursday of every 1 months." +
-            " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+            " Schedule will be used on 05/05/2022 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3123,7 +3123,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Friday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First Friday of every 1 months." +
-            " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+            " Schedule will be used on 04/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3160,7 +3160,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Saturday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First Saturday of every 1 months." +
-           " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+           " Schedule will be used on 02/04/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3195,7 +3195,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Sunday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First Sunday of every 1 months." +
-            " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+            " Schedule will be used on 03/04/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3231,7 +3231,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Monday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second Monday of every 1 months." +
-           " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+           " Schedule will be used on 14/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3266,7 +3266,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Monday_With_End_date_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second Monday of every 1 months." +
-           " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+           " Schedule will be used on 10/01/2022 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3275,7 +3275,7 @@ namespace Scheduler.UnitTests
                 Current_date = new DateTime(2022, 01, 1, 00, 00, 00),
                 Frecuency = Frecuencys.Monthly,
                 Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
-                End_date=new DateTime(2022,01,13,00,00,00),
+                End_date = new DateTime(2022, 01, 13, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.EveryTime,
                 Star_time = new TimeSpan(02, 00, 00),
                 End_time = new TimeSpan(04, 00, 00),
@@ -3292,14 +3292,14 @@ namespace Scheduler.UnitTests
 
             Assert.AreEqual(2, result.Count);
             Assert.AreEqual(new DateTime(2022, 01, 10, 02, 00, 00), result[0]);
-            Assert.AreEqual(new DateTime(2022, 01, 10, 04, 00, 00), result[1]);           
+            Assert.AreEqual(new DateTime(2022, 01, 10, 04, 00, 00), result[1]);
             Assert.AreEqual(ExpectedDescription, actualDescription);
         }
         [TestMethod]
         public void Scheduler_Monthly_Return_Second_Tuesday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second Tuesday of every 1 months." +
-             " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+             " Schedule will be used on 08/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3334,7 +3334,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Wednesday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second Wednesday of every 1 months." +
-          " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+          " Schedule will be used on 09/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3369,7 +3369,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Thurday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second Thursday of every 1 months." +
-             " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+             " Schedule will be used on 10/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3404,7 +3404,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Friday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second Friday of every 1 months." +
-           " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+           " Schedule will be used on 11/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3440,7 +3440,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Saturday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second Saturday of every 1 months." +
-          " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+          " Schedule will be used on 12/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3476,7 +3476,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Sunday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second Sunday of every 1 months." +
-           " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+           " Schedule will be used on 13/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3512,7 +3512,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Monday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third Monday of every 1 months." +
-          " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+          " Schedule will be used on 21/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3547,7 +3547,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Monday_With_End_Date_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third Monday of every 1 months." +
-          " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+          " Schedule will be used on 17/01/2022 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3556,7 +3556,7 @@ namespace Scheduler.UnitTests
                 Current_date = new DateTime(2022, 01, 1, 00, 00, 00),
                 Frecuency = Frecuencys.Monthly,
                 Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
-                End_date= new DateTime(2022,02,10,00,00,00),
+                End_date = new DateTime(2022, 02, 10, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.EveryTime,
                 Star_time = new TimeSpan(02, 00, 00),
                 End_time = new TimeSpan(04, 00, 00),
@@ -3580,7 +3580,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Tuesday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third Tuesday of every 1 months." +
-         " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+         " Schedule will be used on 15/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3615,7 +3615,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Wednesday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third Wednesday of every 1 months." +
-        " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+        " Schedule will be used on 16/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3650,7 +3650,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Thursday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third Thursday of every 1 months." +
-        " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+        " Schedule will be used on 17/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3685,7 +3685,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Friday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third Friday of every 1 months." +
-        " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+        " Schedule will be used on 18/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3720,7 +3720,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Saturday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third Saturday of every 1 months." +
-        " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+        " Schedule will be used on 19/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3756,7 +3756,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_monthly_Return_Third_Sunday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third Sunday of every 1 months." +
-        " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+        " Schedule will be used on 20/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3793,7 +3793,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Monday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Monday of every 1 months." +
-        " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+        " Schedule will be used on 28/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3829,7 +3829,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Monday_With_End_date_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Monday of every 1 months." +
-        " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+        " Schedule will be used on 28/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3866,7 +3866,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Tuesday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Tuesday of every 1 months." +
-         " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+         " Schedule will be used on 22/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3902,7 +3902,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Wednesday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Wednesday of every 1 months." +
-         " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+         " Schedule will be used on 23/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3937,7 +3937,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Thursday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Thursday of every 1 months." +
-      " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+      " Schedule will be used on 24/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -3973,7 +3973,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Friday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Friday of every 1 months." +
-       " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+       " Schedule will be used on 25/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4008,7 +4008,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Saturday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Saturday of every 1 months." +
-      " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+      " Schedule will be used on 26/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4044,7 +4044,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Fourth_Sunday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth Sunday of every 1 months." +
-       " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+       " Schedule will be used on 27/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4081,7 +4081,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Monday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Last Monday of every 1 months." +
-       " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+       " Schedule will be used on 28/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4117,7 +4117,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Monday_With_End_Date_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Last Monday of every 1 months." +
-       " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+       " Schedule will be used on 28/02/2022 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4153,7 +4153,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Tuesday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Last Tuesday of every 1 months." +
-        " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+        " Schedule will be used on 29/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4189,7 +4189,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Return_Last_Wednesday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Last Wednesday of every 1 months." +
-      " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+      " Schedule will be used on 30/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4224,7 +4224,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Thursday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Last Thursday of every 1 months." +
-      " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+      " Schedule will be used on 31/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4259,7 +4259,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Friday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Last Friday of every 1 months." +
-     " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+     " Schedule will be used on 25/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4295,7 +4295,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Saturday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Last Saturday of every 1 months." +
-      " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+      " Schedule will be used on 26/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4331,7 +4331,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Last_Sunday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Last Sunday of every 1 months." +
-            " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
+            " Schedule will be used on 27/03/2022 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4372,7 +4372,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_First_Day_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the First day of every 2 months." +
-              " Schedule will be used at 1:00:00 starting on 01/01/2021";
+              " Schedule will be used on 01/05/2021 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4402,7 +4402,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_First_Day_With_EndDate_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the First day of every 2 months." +
-              " Schedule will be used at 1:00:00 starting on 01/01/2021";
+              " Schedule will be used on 01/03/2021 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4431,7 +4431,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Second_Day_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Second day of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2021";
+               " Schedule will be used on 02/03/2021 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4460,7 +4460,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Third_Day_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Third day of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2021";
+               " Schedule will be used on 03/03/2021 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4489,7 +4489,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Fourth_Day_OnceTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth day of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2021";
+               " Schedule will be used on 04/03/2021 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4519,7 +4519,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Last_Day_OnceTIme()
         {
             string ExpectedDescription = "Ocurrs the Last day of every 1 months." +
-              " Schedule will be used at 1:00:00 starting on 01/01/2021";
+              " Schedule will be used on 28/02/2021 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4549,7 +4549,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Last_Day_With_EndTime_OnceTIme()
         {
             string ExpectedDescription = "Ocurrs the Last day of every 1 months." +
-              " Schedule will be used at 1:00:00 starting on 01/01/2021";
+              " Schedule will be used on 31/01/2021 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4571,7 +4571,7 @@ namespace Scheduler.UnitTests
             string actualDescription = Calculator.GetDescriptionExecution(Config);
 
             Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(new DateTime(2021, 01, 31, 01, 00, 00), result[0]);            
+            Assert.AreEqual(new DateTime(2021, 01, 31, 01, 00, 00), result[0]);
             Assert.AreEqual(ExpectedDescription, actualDescription);
         }
         #endregion
@@ -4582,7 +4582,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_First_Day_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First day of every 1 months." +
-               " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+               " Schedule will be used on 01/03/2021 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4616,7 +4616,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_First_Day_With_EndDate_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First day of every 1 months." +
-               " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+               " Schedule will be used on 01/02/2021 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4642,14 +4642,14 @@ namespace Scheduler.UnitTests
 
             Assert.AreEqual(2, result.Count);
             Assert.AreEqual(new DateTime(2021, 02, 01, 02, 00, 00), result[0]);
-            Assert.AreEqual(new DateTime(2021, 02, 01, 04, 00, 00), result[1]);           
+            Assert.AreEqual(new DateTime(2021, 02, 01, 04, 00, 00), result[1]);
             Assert.AreEqual(ExpectedDescription, actualDescription);
         }
         [TestMethod]
         public void Scheduler_Second_Day_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second day of every 1 months." +
-              " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+              " Schedule will be used on 02/03/2021 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4682,7 +4682,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Second_Day_With_EndDate_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second day of every 1 months." +
-              " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+              " Schedule will be used on 02/02/2021 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4715,7 +4715,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Third_Day_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third day of every 1 months." +
-             " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+             " Schedule will be used on 03/03/2021 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4748,7 +4748,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Third_Day_Eith_EndDate_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third day of every 1 months." +
-             " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+             " Schedule will be used on 03/02/2021 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4781,7 +4781,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Fourth_Day_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth day of every 1 months." +
-              " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+              " Schedule will be used on 04/03/2021 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4814,7 +4814,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Fourth_Day_With_EndDate_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth day of every 1 months." +
-              " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+              " Schedule will be used on 04/02/2021 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4848,7 +4848,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Last_Day_EveryTIme()
         {
             string ExpectedDescription = "Ocurrs the Last day of every 1 months." +
-              " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+              " Schedule will be used on 28/02/2021 02:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4881,7 +4881,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Last_Day_With_EndDate_EveryTIme()
         {
             string ExpectedDescription = "Ocurrs the Last day of every 1 months." +
-              " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+              " Schedule will be used on 31/01/2021 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -4915,13 +4915,13 @@ namespace Scheduler.UnitTests
         public void Scheduler_Last_Day_EveryTIme_NextYear()
         {
             string ExpectedDescription = "Ocurrs the Last day of every 1 months." +
-              " Schedule will be used every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
+              " Schedule will be used on 31/01/2022 04:00:00 every 2 hours between 02:00:00 and 04:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
                 Active = true,
                 Ocurrs_type = Types.Recurring,
-                Current_date = new DateTime(2021, 11 ,25 , 00, 00, 00),
+                Current_date = new DateTime(2021, 11, 25, 00, 00, 00),
                 Frecuency = Frecuencys.Monthly,
                 Start_date = new DateTime(2021, 01, 1, 00, 00, 00),
                 Star_time = new TimeSpan(02, 00, 00),
@@ -4935,7 +4935,7 @@ namespace Scheduler.UnitTests
             };
             ScheduleCalculator Calculator = new();
 
-            var result = Calculator.CalculateSerie(Config,6);
+            var result = Calculator.CalculateSerie(Config, 6);
             string actualDescription = Calculator.GetDescriptionExecution(Config);
 
             Assert.AreEqual(6, result.Count);
@@ -4955,7 +4955,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Weekendday()
         {
             string ExpectedDescription = "Ocurrs the First weekendday of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2022";
+               " Schedule will be used on 04/06/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -4992,7 +4992,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Weekendday_With_EndDate()
         {
             string ExpectedDescription = "Ocurrs the First weekendday of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2022";
+               " Schedule will be used on 06/02/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5024,7 +5024,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Weekendday_Sunday()
         {
             string ExpectedDescription = "Ocurrs the First weekendday of every 1 months." +
-                " Schedule will be used at 1:00:00 starting on 01/01/2021";
+                " Schedule will be used on 05/12/2021 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -5060,7 +5060,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Weekendday_Next_Year()
         {
             string ExpectedDescription = "Ocurrs the First weekendday of every 1 months." +
-                " Schedule will be used at 1:00:00 starting on 01/01/2021";
+                " Schedule will be used on 01/01/2022 01:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -5091,7 +5091,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_second_weekendday()
         {
             string ExpectedDescription = "Ocurrs the Second weekendday of every 1 months." +
-              " Schedule will be used at 1:00:00 starting on 01/01/2022";
+              " Schedule will be used on 10/04/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5126,7 +5126,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_NextMonth_When_CurrentDate_Later_Than_Second_Weekdenday()
         {
             string ExpectedDescription = "Ocurrs the Second weekendday of every 1 months." +
-             " Schedule will be used at 1:00:00 starting on 01/01/2022";
+             " Schedule will be used on 12/06/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5157,7 +5157,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Weekendday_When_Current_Date_In_Same_Week()
         {
             string ExpectedDescription = "Ocurrs the Second weekendday of every 1 months." +
-            " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            " Schedule will be used on 08/05/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5189,7 +5189,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Third_Weekendday()
         {
             string ExpectedDescription = "Ocurrs the Third weekendday of every 1 months." +
-             " Schedule will be used at 1:00:00 starting on 01/01/2022";
+             " Schedule will be used on 20/02/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5220,7 +5220,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Fourth_Weekendday()
         {
             string ExpectedDescription = "Ocurrs the Fourth weekendday of every 1 months." +
-             " Schedule will be used at 1:00:00 starting on 01/01/2022";
+             " Schedule will be used on 27/02/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5251,7 +5251,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Last_Weekendday()
         {
             string ExpectedDescription = "Ocurrs the Last weekendday of every 1 months." +
-             " Schedule will be used at 1:00:00 starting on 01/01/2022";
+             " Schedule will be used on 30/04/2022 01:00:00 starting on 01/01/2022";
 
 
             ScheduleConfiguration Config = new()
@@ -5286,7 +5286,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Last_Weekendday_Start_Last_Saturday_Last_DateMonth()
         {
             string ExpectedDescription = "Ocurrs the Last weekendday of every 1 months." +
-             " Schedule will be used at 1:00:00 starting on 01/01/2022";
+             " Schedule will be used on 29/05/2022 01:00:00 starting on 01/01/2022";
 
 
             ScheduleConfiguration Config = new()
@@ -5317,7 +5317,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Last_Weekendday_Start_InLastSaturday()
         {
             string ExpectedDescription = "Ocurrs the Last weekendday of every 1 months." +
-             " Schedule will be used at 1:00:00 starting on 01/01/2022";
+             " Schedule will be used on 30/01/2022 01:00:00 starting on 01/01/2022";
 
 
             ScheduleConfiguration Config = new()
@@ -5348,7 +5348,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Last_Weekendday_Start_InSunday()
         {
             string ExpectedDescription = "Ocurrs the Last weekendday of every 1 months." +
-             " Schedule will be used at 1:00:00 starting on 01/01/2022";
+             " Schedule will be used on 26/02/2022 01:00:00 starting on 01/01/2022";
 
 
             ScheduleConfiguration Config = new()
@@ -5378,12 +5378,12 @@ namespace Scheduler.UnitTests
         #endregion
 
 
-        #region Test Monthly Every Time - weekend day (Saturday and Sunday)
+        #region Test Monthly Every Time - weekday day (Saturday and Sunday)
         [TestMethod]
         public void Scheduler_Monthly_Return_First_Weekendday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First weekendday of every 1 months." +
-             " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+             " Schedule will be used on 05/02/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5419,7 +5419,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Weekendday__With_EndDate_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First weekendday of every 1 months." +
-             " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+             " Schedule will be used on 02/01/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5454,7 +5454,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_First_Weekendday_Next_Year_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the First weekendday of every 1 months." +
-            " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2021";
+            " Schedule will be used on 01/01/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2021";
 
             ScheduleConfiguration Config = new()
             {
@@ -5492,7 +5492,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Weekendday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second weekendday of every 1 months." +
-          " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+          " Schedule will be used on 12/03/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5532,7 +5532,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_NextMonth_When_CurrentDate_Later_Than_Second_Weekdenday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second weekendday of every 1 months." +
-          " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+          " Schedule will be used on 12/06/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5570,7 +5570,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Second_Weekendday_When_Current_Date_In_Same_Week_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Second weekendday of every 1 months." +
-          " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+          " Schedule will be used on 08/05/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5610,7 +5610,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Return_Third_Weekendday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Third weekendday of every 1 months." +
-          " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+          " Schedule will be used on 20/02/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5648,7 +5648,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Fourth_Weekendday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Fourth weekendday of every 1 months." +
-         " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+         " Schedule will be used on 27/02/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5686,7 +5686,7 @@ namespace Scheduler.UnitTests
         public void Scheduler_Monthly_Last_Weekendday_EveryTime()
         {
             string ExpectedDescription = "Ocurrs the Last weekendday of every 1 months." +
-         " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+         " Schedule will be used on 30/04/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
 
             ScheduleConfiguration Config = new()
@@ -5730,13 +5730,13 @@ namespace Scheduler.UnitTests
         #endregion
 
 
-        #region Test Monthly Once Time - weekend (Laboral Days (Monday at Friday))
+        #region Test Monthly Once Time - weekday (Laboral Days (Monday at Friday))
 
         [TestMethod]
         public void Scheduler_Monthly_Return_First_Weekeend_OnceTime()
         {
-            string ExpectedDescription = "Ocurrs the First weekend of every 1 months." +
-              " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the First weekday of every 1 months." +
+              " Schedule will be used on 03/08/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5747,7 +5747,7 @@ namespace Scheduler.UnitTests
                 Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.OnceTime,
                 Time_once_frecuency = new TimeSpan(01, 00, 00),
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.First,
                 Frecuency_months = 1
             };
@@ -5769,8 +5769,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_First_Weekeend_Start_In_Saturday_OnceTime()
         {
-            string ExpectedDescription = "Ocurrs the First weekend of every 1 months." +
-              " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the First weekday of every 1 months." +
+              " Schedule will be used on 02/02/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5781,7 +5781,7 @@ namespace Scheduler.UnitTests
                 Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.OnceTime,
                 Time_once_frecuency = new TimeSpan(01, 00, 00),
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.First,
                 Frecuency_months = 1
             };
@@ -5804,8 +5804,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Second_Weekeend_Start_In_Tuesday_Once_Time()
         {
-            string ExpectedDescription = "Ocurrs the First weekend of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the First weekday of every 1 months." +
+               " Schedule will be used on 04/02/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5816,7 +5816,7 @@ namespace Scheduler.UnitTests
                 Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.OnceTime,
                 Time_once_frecuency = new TimeSpan(01, 00, 00),
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.First,
                 Frecuency_months = 1
             };
@@ -5835,8 +5835,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Second_Weekeend_OnceTime()
         {
-            string ExpectedDescription = "Ocurrs the Second weekend of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Second weekday of every 1 months." +
+               " Schedule will be used on 09/08/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5847,7 +5847,7 @@ namespace Scheduler.UnitTests
                 Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.OnceTime,
                 Time_once_frecuency = new TimeSpan(01, 00, 00),
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Second,
                 Frecuency_months = 1
             };
@@ -5876,8 +5876,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Second_Weekend_When_Current_Date_In_Same_Week_OnceTime()
         {
-            string ExpectedDescription = "Ocurrs the Second weekend of every 1 months." +
-               " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Second weekday of every 1 months." +
+               " Schedule will be used on 11/03/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5888,16 +5888,16 @@ namespace Scheduler.UnitTests
                 Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.OnceTime,
                 Time_once_frecuency = new TimeSpan(01, 00, 00),
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Second,
                 Frecuency_months = 1
             };
             ScheduleCalculator Calculator = new();
 
-            var result = Calculator.CalculateSerie(Config, 12);
+            var result = Calculator.CalculateSerie(Config, 9);
             string actualDescription = Calculator.GetDescriptionExecution(Config);
 
-            Assert.AreEqual(12, result.Count);
+            Assert.AreEqual(9, result.Count);
             Assert.AreEqual(new DateTime(2022, 02, 08, 01, 00, 00), result[0]);
             Assert.AreEqual(new DateTime(2022, 02, 09, 01, 00, 00), result[1]);
             Assert.AreEqual(new DateTime(2022, 02, 10, 01, 00, 00), result[2]);
@@ -5913,8 +5913,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Third_Weekeend_OnceTime()
         {
-            string ExpectedDescription = "Ocurrs the Third weekend of every 1 months." +
-                  " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Third weekday of every 1 months." +
+                  " Schedule will be used on 15/02/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5925,7 +5925,7 @@ namespace Scheduler.UnitTests
                 Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.OnceTime,
                 Time_once_frecuency = new TimeSpan(01, 00, 00),
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Third,
                 Frecuency_months = 1
             };
@@ -5948,8 +5948,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Fourth_Weekeend_OnceTime()
         {
-            string ExpectedDescription = "Ocurrs the Fourth weekend of every 1 months." +
-                  " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Fourth weekday of every 1 months." +
+                  " Schedule will be used on 22/02/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5960,7 +5960,7 @@ namespace Scheduler.UnitTests
                 Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.OnceTime,
                 Time_once_frecuency = new TimeSpan(01, 00, 00),
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Fourth,
                 Frecuency_months = 1
             };
@@ -5983,8 +5983,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Last_Weekeend_OnceTime()
         {
-            string ExpectedDescription = "Ocurrs the Last weekend of every 1 months." +
-                  " Schedule will be used at 1:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Last weekday of every 1 months." +
+                  " Schedule will be used on 28/02/2022 01:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -5995,33 +5995,28 @@ namespace Scheduler.UnitTests
                 Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
                 Daily_frecuency = DailyFrencuencys.OnceTime,
                 Time_once_frecuency = new TimeSpan(01, 00, 00),
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Last,
                 Frecuency_months = 1
             };
             ScheduleCalculator Calculator = new();
 
-            var result = Calculator.CalculateSerie(Config, 7);
+            var result = Calculator.CalculateSerie(Config, 2);
             string actualDescription = Calculator.GetDescriptionExecution(Config);
 
-            Assert.AreEqual(7, result.Count);
+            Assert.AreEqual(2, result.Count);
             Assert.AreEqual(new DateTime(2022, 01, 31, 01, 00, 00), result[0]);
-            Assert.AreEqual(new DateTime(2022, 02, 28, 01, 00, 00), result[1]);/*
-            Assert.AreEqual(new DateTime(2022, 03, 28, 01, 00, 00), result[2]);
-            Assert.AreEqual(new DateTime(2022, 03, 29, 01, 00, 00), result[3]);
-            Assert.AreEqual(new DateTime(2022, 03, 30, 01, 00, 00), result[4]);
-            Assert.AreEqual(new DateTime(2022, 03, 31, 01, 00, 00), result[5]);
-            Assert.AreEqual(new DateTime(2022, 04, 25, 01, 00, 00), result[6]);*/
+            Assert.AreEqual(new DateTime(2022, 02, 28, 01, 00, 00), result[1]);
             Assert.AreEqual(ExpectedDescription, actualDescription);
         }
         #endregion
 
-        #region Test Monthly Every Time - weekend (Laboral Days (Monday - Friday)
+        #region Test Monthly Every Time - weekday (Laboral Days (Monday - Friday)
         [TestMethod]
         public void Scheduler_Monthly_Return_First_Weekeend_EveryTime()
         {
-            string ExpectedDescription = "Ocurrs the First weekend of every 1 months." +
-            " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the First weekday of every 1 months." +
+            " Schedule will be used on 01/08/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -6035,7 +6030,7 @@ namespace Scheduler.UnitTests
                 End_time = new TimeSpan(03, 0, 0),
                 Time_frecuency = 2,
                 Time_type = TimeTypes.Hours,
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.First,
                 Frecuency_months = 1
             };
@@ -6060,8 +6055,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_First_Weekeend_With_EndDate_EveryTime()
         {
-            string ExpectedDescription = "Ocurrs the First weekend of every 1 months." +
-            " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the First weekday of every 1 months." +
+            " Schedule will be used on 03/06/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -6076,7 +6071,7 @@ namespace Scheduler.UnitTests
                 End_time = new TimeSpan(03, 0, 0),
                 Time_frecuency = 2,
                 Time_type = TimeTypes.Hours,
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.First,
                 Frecuency_months = 1
             };
@@ -6097,8 +6092,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_First_Weekeend_Start_In_Saturday_EveryTime()
         {
-            string ExpectedDescription = "Ocurrs the First weekend of every 1 months." +
-            " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the First weekday of every 1 months." +
+            " Schedule will be used on 02/02/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -6112,7 +6107,7 @@ namespace Scheduler.UnitTests
                 End_time = new TimeSpan(03, 0, 0),
                 Time_frecuency = 2,
                 Time_type = TimeTypes.Hours,
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.First,
                 Frecuency_months = 1
             };
@@ -6142,8 +6137,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Second_Weekeend_Start_In_Tuesday_EveryTime()
         {
-            string ExpectedDescription = "Ocurrs the First weekend of every 1 months." +
-             " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the First weekday of every 1 months." +
+             " Schedule will be used on 04/02/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -6157,7 +6152,7 @@ namespace Scheduler.UnitTests
                 End_time = new TimeSpan(03, 0, 0),
                 Time_frecuency = 2,
                 Time_type = TimeTypes.Hours,
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.First,
                 Frecuency_months = 1
             };
@@ -6179,8 +6174,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Second_Weekeend_EveryTime()
         {
-            string ExpectedDescription = "Ocurrs the Second weekend of every 1 months." +
-             " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Second weekday of every 1 months." +
+             " Schedule will be used on 04/07/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -6194,7 +6189,7 @@ namespace Scheduler.UnitTests
                 End_time = new TimeSpan(03, 0, 0),
                 Time_frecuency = 2,
                 Time_type = TimeTypes.Hours,
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Second,
                 Frecuency_months = 1
             };
@@ -6223,8 +6218,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Second_Weekend_When_Current_Date_In_Same_Week_EveryTime()
         {
-            string ExpectedDescription = "Ocurrs the Second weekend of every 1 months." +
-             " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Second weekday of every 1 months." +
+             " Schedule will be used on 08/03/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -6238,7 +6233,7 @@ namespace Scheduler.UnitTests
                 End_time = new TimeSpan(03, 0, 0),
                 Time_frecuency = 2,
                 Time_type = TimeTypes.Hours,
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Second,
                 Frecuency_months = 1
             };
@@ -6266,8 +6261,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Third_Weekeend_EveryTime()
         {
-            string ExpectedDescription = "Ocurrs the Third weekend of every 1 months." +
-            " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Third weekday of every 1 months." +
+            " Schedule will be used on 15/02/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -6281,7 +6276,7 @@ namespace Scheduler.UnitTests
                 End_time = new TimeSpan(03, 0, 0),
                 Time_frecuency = 2,
                 Time_type = TimeTypes.Hours,
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Third,
                 Frecuency_months = 1
             };
@@ -6311,8 +6306,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Fourth_Weekeend_EveryTime()
         {
-            string ExpectedDescription = "Ocurrs the Fourth weekend of every 1 months." +
-             " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Fourth weekday of every 1 months." +
+             " Schedule will be used on 27/01/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -6326,7 +6321,7 @@ namespace Scheduler.UnitTests
                 End_time = new TimeSpan(03, 0, 0),
                 Time_frecuency = 2,
                 Time_type = TimeTypes.Hours,
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Fourth,
                 Frecuency_months = 1
             };
@@ -6350,8 +6345,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Last_Weekeend_EveryTime()
         {
-            string ExpectedDescription = "Ocurrs the Last weekend of every 1 months." +
-             " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Last weekday of every 1 months." +
+             " Schedule will be used on 29/03/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -6365,7 +6360,7 @@ namespace Scheduler.UnitTests
                 End_time = new TimeSpan(03, 0, 0),
                 Time_frecuency = 2,
                 Time_type = TimeTypes.Hours,
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Last,
                 Frecuency_months = 1
             };
@@ -6389,8 +6384,8 @@ namespace Scheduler.UnitTests
         [TestMethod]
         public void Scheduler_Monthly_Return_Last_Weekeend_Every_3_Months_EveryTime()
         {
-            string ExpectedDescription = "Ocurrs the Last weekend of every 3 months." +
-             " Schedule will be used every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
+            string ExpectedDescription = "Ocurrs the Last weekday of every 3 months." +
+             " Schedule will be used on 27/04/2022 03:00:00 every 2 hours between 01:00:00 and 03:00:00 starting on 01/01/2022";
 
             ScheduleConfiguration Config = new()
             {
@@ -6404,7 +6399,7 @@ namespace Scheduler.UnitTests
                 End_time = new TimeSpan(03, 0, 0),
                 Time_frecuency = 2,
                 Time_type = TimeTypes.Hours,
-                Active_days_monthly = Days_Of_Week_Monthly.weekend,
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
                 Actual_week = WeeksInMonth.Last,
                 Frecuency_months = 3
             };
@@ -6415,7 +6410,7 @@ namespace Scheduler.UnitTests
 
             Assert.AreEqual(8, result.Count);
             Assert.AreEqual(new DateTime(2022, 01, 31, 01, 00, 00), result[0]);
-            Assert.AreEqual(new DateTime(2022, 01, 31, 03, 00, 00), result[1]);            
+            Assert.AreEqual(new DateTime(2022, 01, 31, 03, 00, 00), result[1]);
             Assert.AreEqual(new DateTime(2022, 04, 25, 01, 00, 00), result[2]);
             Assert.AreEqual(new DateTime(2022, 04, 25, 03, 00, 00), result[3]);
             Assert.AreEqual(new DateTime(2022, 04, 26, 01, 00, 00), result[4]);
@@ -6426,6 +6421,253 @@ namespace Scheduler.UnitTests
 
         }
         #endregion
+
+        #region Test With Language Spanish
+
+        [TestMethod]
+        public void Scheduler_ES_Language_Exception_Not_Active_Return_Exception()
+        {
+            String MessageException = "La configuración debe estar activa";
+            ScheduleConfiguration Config = new() { Active = false, Language_Application = Language.ES };
+            ScheduleCalculator Calculator = new();
+
+            InvalidOperationException ex = Assert
+                .ThrowsException<InvalidOperationException>(() => Calculator.GetResult(Config));
+
+            Assert.AreEqual(MessageException, ex.Message);
+        }
+        [TestMethod]
+        public void Scheduler_Language_Spanish_Daily_Recurring()
+        {
+            String ExpectedDescription = "Ocurre todos los días. Se utilizará el horario el 01/10/2021 00:00:00 cada " +
+                "2 horas entre 00:00:00 y 04:00:00 a partir de 01/10/2021";
+            ScheduleConfiguration Config = new()
+            {
+                Active = true,
+                Ocurrs_type = Types.Recurring,
+                Current_date = new DateTime(2021, 10, 1, 00, 00, 00),
+                Frecuency = Frecuencys.Daily,
+                Start_date = new DateTime(2021, 10, 1, 00, 00, 00),
+                Daily_frecuency = DailyFrencuencys.EveryTime,
+                Time_type = TimeTypes.Hours,
+                Time_frecuency = 2,
+                Star_time = new TimeSpan(00, 00, 00),
+                End_time = new TimeSpan(04, 00, 00),
+                Language_Application = Language.ES
+
+            };
+            ScheduleCalculator Calculator = new();
+
+            DateTime? result = Calculator.GetResult(Config);
+            string actualDescription = Calculator.GetDescriptionExecution(Config);
+
+            Assert.AreEqual(new DateTime(2021, 10, 01, 00, 00, 00), result);
+            Assert.AreEqual(ExpectedDescription, actualDescription);
+        }
+        [TestMethod]
+        public void Scheduler_Language_Spanish_Weekly_Recurring()
+        {
+            String ExpectedDescription = "Ocurre cada 3 semanas en Lunes - Martes - Miércoles - Domingo. Se utilizará el horario" +
+                " el 19/10/2021 00:00:00 cada 1 horas entre 00:00:00 y 01:00:00 a partir de 01/10/2021";
+
+            ScheduleConfiguration Config = new()
+            {
+                Active = true,
+                Ocurrs_type = Types.Recurring,
+                Current_date = new DateTime(2021, 10, 1, 00, 00, 00),
+                Frecuency = Frecuencys.Weekly,
+                Frecuency_weeks = 3,
+                Days_active_week = new DayOfWeek[4] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Sunday },
+                Start_date = new DateTime(2021, 10, 1, 00, 00, 00),
+                End_date = new DateTime(2021, 10, 19, 0, 0, 0),
+                Daily_frecuency = DailyFrencuencys.EveryTime,
+                Time_type = TimeTypes.Hours,
+                Time_frecuency = 1,
+                Star_time = new TimeSpan(00, 00, 00),
+                End_time = new TimeSpan(01, 00, 00),
+                Language_Application = Language.ES
+
+            };
+            ScheduleCalculator Calculator = new();
+
+            var result = Calculator.CalculateSerie(Config, 8);
+            string actualDescription = Calculator.GetDescriptionExecution(Config);
+
+            Assert.AreEqual(5, result.Count);
+            Assert.AreEqual(new DateTime(2021, 10, 03, 00, 00, 00), result[0]);
+            Assert.AreEqual(new DateTime(2021, 10, 03, 01, 00, 00), result[1]);
+            Assert.AreEqual(new DateTime(2021, 10, 18, 00, 00, 00), result[2]);
+            Assert.AreEqual(new DateTime(2021, 10, 18, 01, 00, 00), result[3]);
+            Assert.AreEqual(new DateTime(2021, 10, 19, 00, 00, 00), result[4]);
+
+            Assert.AreEqual(ExpectedDescription, actualDescription);
+        }
+        [TestMethod]
+        public void Scheduler_Language_Spanish_Monthly()
+        {
+            string ExpectedDescription = "Ocurre el primer rango de días laborales entre semana del mes de cada 1 meses." +
+              " Se utilizará el horario el 03/08/2022 01:00:00 a partir de 01/01/2022";
+
+            ScheduleConfiguration Config = new()
+            {
+                Active = true,
+                Ocurrs_type = Types.Recurring,
+                Current_date = new DateTime(2022, 05, 30, 00, 00, 00),
+                Frecuency = Frecuencys.Monthly,
+                Start_date = new DateTime(2022, 01, 1, 00, 00, 00),
+                Daily_frecuency = DailyFrencuencys.OnceTime,
+                Time_once_frecuency = new TimeSpan(01, 00, 00),
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
+                Actual_week = WeeksInMonth.First,
+                Frecuency_months = 1,
+                Language_Application = Language.ES
+            };
+            ScheduleCalculator Calculator = new();
+
+            var result = Calculator.CalculateSerie(Config, 7);
+            string actualDescription = Calculator.GetDescriptionExecution(Config);
+
+            Assert.AreEqual(7, result.Count);
+            Assert.AreEqual(new DateTime(2022, 06, 01, 01, 00, 00), result[0]);
+            Assert.AreEqual(new DateTime(2022, 06, 02, 01, 00, 00), result[1]);
+            Assert.AreEqual(new DateTime(2022, 06, 03, 01, 00, 00), result[2]);
+            Assert.AreEqual(new DateTime(2022, 07, 01, 01, 00, 00), result[3]);
+            Assert.AreEqual(new DateTime(2022, 08, 01, 01, 00, 00), result[4]);
+            Assert.AreEqual(new DateTime(2022, 08, 02, 01, 00, 00), result[5]);
+            Assert.AreEqual(new DateTime(2022, 08, 03, 01, 00, 00), result[6]);
+            Assert.AreEqual(ExpectedDescription, actualDescription);
+        }
+
+        #endregion
+
+        #region Test With language English US
+        [TestMethod]
+        public void Scheduler_Language_English_US_Daily_Recurring()
+        {
+            String ExpectedDescription = "Ocurrs every day. Schedule will be used on 10/01/2021 00:00:00 every " +
+                "2 hours between 00:00:00 and 04:00:00 starting on 10/01/2021";
+            ScheduleConfiguration Config = new()
+            {
+                Active = true,
+                Ocurrs_type = Types.Recurring,
+                Current_date = new DateTime(2021, 10, 1, 00, 00, 00),
+                Frecuency = Frecuencys.Daily,
+                Start_date = new DateTime(2021, 10, 1, 00, 00, 00),
+                Daily_frecuency = DailyFrencuencys.EveryTime,
+                Time_type = TimeTypes.Hours,
+                Time_frecuency = 2,
+                Star_time = new TimeSpan(00, 00, 00),
+                End_time = new TimeSpan(04, 00, 00),
+                Language_Application = Language.US
+            };
+            ScheduleCalculator Calculator = new();
+
+            DateTime? result = Calculator.GetResult(Config);
+            string actualDescription = Calculator.GetDescriptionExecution(Config);
+
+            Assert.AreEqual(new DateTime(2021, 10, 01, 00, 00, 00), result);
+            Assert.AreEqual(ExpectedDescription, actualDescription);
+        }
+
+        
+        [TestMethod]
+        public void Scheduler_language_English_US_Weekly()
+        {
+            String ExpectedDescription = "Ocurrs every 2 weeks on Monday. Schedule will be" +
+                  " used on 02/22/2021 01:00:00 starting on 01/01/2021";
+            ScheduleConfiguration Config = new()
+            {
+                Active = true,
+                Ocurrs_type = Types.Recurring,
+                Current_date = new DateTime(2021, 01, 1, 00, 00, 00),
+                Start_date = new DateTime(2021, 01, 1, 00, 00, 00),
+                Frecuency = Frecuencys.Weekly,
+                Daily_frecuency = DailyFrencuencys.OnceTime,
+                Time_once_frecuency = new TimeSpan(01, 00, 00),
+                Days_active_week = new DayOfWeek[1] { DayOfWeek.Monday },              
+                Frecuency_weeks = 2,
+                Language_Application = Language.US
+            };
+            ScheduleCalculator Calculator = new();
+
+            var result = Calculator.CalculateSerie(Config, 4);
+            string actualDescription = Calculator.GetDescriptionExecution(Config);
+
+            Assert.AreEqual(4, result.Count);
+            Assert.AreEqual(new DateTime(2021, 01, 11, 01, 00, 00), result[0]);
+            Assert.AreEqual(new DateTime(2021, 01, 25, 01, 00, 00), result[1]);
+            Assert.AreEqual(new DateTime(2021, 02, 08, 01, 00, 00), result[2]);
+            Assert.AreEqual(new DateTime(2021, 02, 22, 01, 00, 00), result[3]);
+            Assert.AreEqual(ExpectedDescription, actualDescription);
+        }
+
+        [TestMethod]
+        public void Scheduler_Language_English_US_Monthly()
+        {
+            string ExpectedDescription = "Ocurrs the First weekday of every 1 months." +
+              " Schedule will be used on 08/03/2022 01:00:00 starting on 04/01/2022";
+
+            ScheduleConfiguration Config = new()
+            {
+                Active = true,
+                Ocurrs_type = Types.Recurring,
+                Current_date = new DateTime(2022, 05, 30, 00, 00, 00),
+                Frecuency = Frecuencys.Monthly,
+                Start_date = new DateTime(2022, 04, 1, 00, 00, 00),
+                Daily_frecuency = DailyFrencuencys.OnceTime,
+                Time_once_frecuency = new TimeSpan(01, 00, 00),
+                Active_days_monthly = Days_Of_Week_Monthly.weekday,
+                Actual_week = WeeksInMonth.First,
+                Frecuency_months = 1,
+                Language_Application = Language.US
+            };
+            ScheduleCalculator Calculator = new();
+
+            var result = Calculator.CalculateSerie(Config, 7);
+            string actualDescription = Calculator.GetDescriptionExecution(Config);
+
+            Assert.AreEqual(7, result.Count);
+            Assert.AreEqual(new DateTime(2022, 06, 01, 01, 00, 00), result[0]);
+            Assert.AreEqual(new DateTime(2022, 06, 02, 01, 00, 00), result[1]);
+            Assert.AreEqual(new DateTime(2022, 06, 03, 01, 00, 00), result[2]);
+            Assert.AreEqual(new DateTime(2022, 07, 01, 01, 00, 00), result[3]);
+            Assert.AreEqual(new DateTime(2022, 08, 01, 01, 00, 00), result[4]);
+            Assert.AreEqual(new DateTime(2022, 08, 02, 01, 00, 00), result[5]);
+            Assert.AreEqual(new DateTime(2022, 08, 03, 01, 00, 00), result[6]);
+            Assert.AreEqual(ExpectedDescription, actualDescription);
+        }
+        #endregion
+
+        #region Test With language English Uk - all test are traduction with this language for defect
+        [TestMethod]
+        public void Scheduler_Language_English_UK_Daily_Recurring()
+        {
+            String ExpectedDescription = "Ocurrs every day. Schedule will be used on 01/10/2021 00:00:00 every " +
+                "2 hours between 00:00:00 and 04:00:00 starting on 01/10/2021";
+            ScheduleConfiguration Config = new()
+            {
+                Active = true,
+                Ocurrs_type = Types.Recurring,
+                Current_date = new DateTime(2021, 10, 1, 00, 00, 00),
+                Frecuency = Frecuencys.Daily,
+                Start_date = new DateTime(2021, 10, 1, 00, 00, 00),
+                Daily_frecuency = DailyFrencuencys.EveryTime,
+                Time_type = TimeTypes.Hours,
+                Time_frecuency = 2,
+                Star_time = new TimeSpan(00, 00, 00),
+                End_time = new TimeSpan(04, 00, 00),
+                Language_Application = Language.UK
+            };
+            ScheduleCalculator Calculator = new();
+
+            DateTime? result = Calculator.GetResult(Config);
+            string actualDescription = Calculator.GetDescriptionExecution(Config);
+
+            Assert.AreEqual(new DateTime(2021, 10, 01, 00, 00, 00), result);
+            Assert.AreEqual(ExpectedDescription, actualDescription);
+        }
+        #endregion
+
     }
 }
-//exception no indicar actual_date
+

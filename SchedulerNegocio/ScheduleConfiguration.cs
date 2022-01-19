@@ -30,5 +30,7 @@ namespace SchedulerNegocio
 
         public DateTime? Last_execution { get; set; }
 
+        public Language Language_Application { get; set; }
+
     }
 }

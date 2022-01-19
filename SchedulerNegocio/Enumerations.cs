@@ -42,7 +42,16 @@
         Saturday,
         Sunday,
         day,
-        weekend,
+        weekday,
         weekendday
+    }
+
+    public enum Language
+    {
+        UK,
+        US,       
+        ES
+       
+       
     }
 }
